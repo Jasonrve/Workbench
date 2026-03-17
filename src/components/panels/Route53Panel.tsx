@@ -70,7 +70,7 @@ export default function Route53Panel() {
         {error && <div className="text-red-400 text-sm bg-red-950 p-3 rounded">{error}</div>}
         {zones && (
           <div className="space-y-2">
-            {zones.map((zone, i) => (
+            {zones.map((zone) => (
               <div
                 key={String(zone.id)}
                 onClick={() => setSelectedZone(String(zone.id))}

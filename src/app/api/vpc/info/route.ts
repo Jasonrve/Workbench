@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server'
 import http from 'http'
 
+/**
+ * Fetches a value from the AWS EC2 Instance Metadata Service (IMDS) at 169.254.169.254.
+ * @param path - The IMDS path to query (e.g. '/latest/meta-data/instance-id')
+ * @returns The raw response body as a string, or rejects on error/timeout.
+ */
 function fetchMetadata(path: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const req = http.get(`http://169.254.169.254${path}`, { timeout: 2000 }, (res) => {

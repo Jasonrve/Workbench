@@ -129,10 +129,16 @@ export default function AWSIdentityPanel() {
           </button>
           {assumeResult && (
             <div className={`p-3 rounded-lg text-sm ${assumeResult.success ? 'bg-green-950 text-green-300' : 'bg-red-950 text-red-300'}`}>
-              {assumeResult.success
-                ? <><div>✓ Role assumed successfully</div><div className="font-mono text-xs mt-1">Expiry: {String((assumeResult.credentials as Record<string, unknown>)?.expiration || '')}</div></>
-                : <div>✗ {String(assumeResult.error)}</div>
-              }
+              {assumeResult.success ? (
+                <div>
+                  <div>✓ Role assumed successfully</div>
+                  <div className="font-mono text-xs mt-1">
+                    Expiry: {String((assumeResult.credentials as Record<string, unknown>)?.expiration ?? '')}
+                  </div>
+                </div>
+              ) : (
+                <div>✗ {String(assumeResult.error)}</div>
+              )}
             </div>
           )}
         </div>
