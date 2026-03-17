@@ -41,7 +41,7 @@ export async function GET() {
         res.on('end', () => resolve(data))
       })
       req.on('error', reject)
-      req.on('timeout', () => { req.destroy(); reject(new Error('timeout')) })
+      req.on('timeout', () => { req.destroy(); reject(new Error('Timeout')) })
       req.end()
     })
 

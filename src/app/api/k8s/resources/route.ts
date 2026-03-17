@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
             namespace: pod.metadata?.namespace,
             status: pod.status?.phase,
             ready: pod.status?.conditions?.find(c => c.type === 'Ready')?.status === 'True',
-            restarts: pod.status?.containerStatuses?.reduce((sum, cs) => sum + cs.restartCount, 0) ?? 0,
+            restarts: pod.status?.containerStatuses?.reduce((sum, cs) => sum + (cs.restartCount || 0), 0) ?? 0,
             age: pod.metadata?.creationTimestamp,
             nodeName: pod.spec?.nodeName,
             ip: pod.status?.podIP,
