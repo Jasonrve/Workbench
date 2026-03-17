@@ -70,8 +70,8 @@ export default function RBACPanel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {(rbac.clusterRoles as Record<string, unknown>[])?.map((cr, i) => (
-                    <tr key={i} className="border-b border-gray-800/50">
+                  {(rbac.clusterRoles as Record<string, unknown>[])?.map((cr) => (
+                    <tr key={String(cr.name)} className="border-b border-gray-800/50">
                       <td className="py-2 pr-4 font-mono text-xs text-gray-200">{String(cr.name)}</td>
                       <td className="py-2 pr-4 text-gray-400">{String(cr.rules)}</td>
                     </tr>
@@ -92,8 +92,8 @@ export default function RBACPanel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {(rbac.clusterRoleBindings as Record<string, unknown>[])?.map((crb, i) => (
-                    <tr key={i} className="border-b border-gray-800/50">
+                  {(rbac.clusterRoleBindings as Record<string, unknown>[])?.map((crb) => (
+                    <tr key={String(crb.name)} className="border-b border-gray-800/50">
                       <td className="py-2 pr-4 font-mono text-xs text-gray-200">{String(crb.name)}</td>
                       <td className="py-2 pr-4 text-blue-400 text-xs">{String(crb.roleRef)}</td>
                       <td className="py-2 pr-4 text-gray-400 text-xs">{(crb.subjects as string[])?.join(', ')}</td>

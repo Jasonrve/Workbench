@@ -72,9 +72,9 @@ export default function Route53Panel() {
           <div className="space-y-2">
             {zones.map((zone, i) => (
               <div
-                key={i}
+                key={String(zone.id)}
                 onClick={() => setSelectedZone(String(zone.id))}
-                className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${selectedZone === String(zone.id) ? 'bg-blue-900 border border-blue-700' : 'bg-gray-800 hover:bg-gray-750'}`}
+                className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${selectedZone === String(zone.id) ? 'bg-blue-900 border border-blue-700' : 'bg-gray-800 hover:bg-gray-700'}`}
               >
                 <div>
                   <div className="text-sm text-white font-mono">{String(zone.name)}</div>

@@ -49,7 +49,7 @@ export default function NodeHealthPanel() {
 
       {nodes && nodes.map((node, i) => (
         <ResultCard
-          key={i}
+          key={String(node.name)}
           title={String(node.name)}
           status={node.status === 'Ready' ? 'success' : 'error'}
         >
