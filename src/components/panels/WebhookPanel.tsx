@@ -61,6 +61,18 @@ export default function WebhookPanel() {
     ? `${typeof window !== 'undefined' ? window.location.origin : ''}/api/webhook/endpoint/${endpoint.id}`
     : ''
 
+  const fetchRequests = useCallback(async (endpointId: string) => {
+    try {
+      const res = await fetch(`/api/webhook/requests?endpointId=${endpointId}`)
+      const data = await res.json()
+      if (data.success) {
+        setRequests(data.requests)
+      }
+    } catch {
+      /* ignore polling errors */
+    }
+  }, [])
+
   // Create endpoint on mount
   useEffect(() => {
     createEndpoint()
@@ -78,7 +90,7 @@ export default function WebhookPanel() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [autoRefresh, endpoint]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [autoRefresh, endpoint, fetchRequests])
 
   async function createEndpoint() {
     setLoading(true)
@@ -97,18 +109,6 @@ export default function WebhookPanel() {
       setLoading(false)
     }
   }
-
-  const fetchRequests = useCallback(async (endpointId: string) => {
-    try {
-      const res = await fetch(`/api/webhook/requests?endpointId=${endpointId}`)
-      const data = await res.json()
-      if (data.success) {
-        setRequests(data.requests)
-      }
-    } catch {
-      /* ignore polling errors */
-    }
-  }, [])
 
   async function clearRequests() {
     if (!endpoint) return
