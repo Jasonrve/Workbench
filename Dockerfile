@@ -12,6 +12,14 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Install AWS CLI v2 and common networking/debug tools for sandbox shell
+RUN apk add --no-cache \
+    python3 py3-pip groff less \
+    curl wget bind-tools jq bash \
+    iputils net-tools traceroute tcpdump \
+    && pip3 install --break-system-packages awscli \
+    && rm -rf /root/.cache
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 

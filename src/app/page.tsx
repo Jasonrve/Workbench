@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   Cloud, Network, Server, Shield, Globe, Database,
-  Search, Activity, Terminal, Cpu, Moon, Sun
+  Search, Activity, Terminal, Cpu, Moon, Sun, Webhook
 } from 'lucide-react'
 import AWSIdentityPanel from '@/components/panels/AWSIdentityPanel'
 import DNSPanel from '@/components/panels/DNSPanel'
@@ -15,6 +15,8 @@ import AWSServicesPanel from '@/components/panels/AWSServicesPanel'
 import Route53Panel from '@/components/panels/Route53Panel'
 import RBACPanel from '@/components/panels/RBACPanel'
 import PodDebugPanel from '@/components/panels/PodDebugPanel'
+import SandboxShellPanel from '@/components/panels/SandboxShellPanel'
+import WebhookPanel from '@/components/panels/WebhookPanel'
 
 const panels = [
   { id: 'aws-identity', label: 'AWS Identity', icon: Cloud, component: AWSIdentityPanel },
@@ -27,6 +29,8 @@ const panels = [
   { id: 'route53', label: 'Route53', icon: Globe, component: Route53Panel },
   { id: 'rbac', label: 'RBAC', icon: Shield, component: RBACPanel },
   { id: 'pod-debug', label: 'Pod Debug', icon: Terminal, component: PodDebugPanel },
+  { id: 'sandbox-shell', label: 'Sandbox Shell', icon: Terminal, component: SandboxShellPanel },
+  { id: 'webhook', label: 'Webhook', icon: Webhook, component: WebhookPanel },
 ]
 
 export default function Home() {
